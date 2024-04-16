@@ -373,7 +373,7 @@ specs = {
 
 </details>
 
-# Supported integrations
+# Supported highlight integrations
 
 The plugin provides highlights for certain plugins
 and optional (neo)vim features out of the box, they are enabled by default.
@@ -513,6 +513,41 @@ treesitter = { enable = true }
 
 <!-- panvimdoc-ignore-start -->
 
+# External integrations
+
+Integrations that have to go beyond setting highlights.
+
+---
+
+**[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)**
+
+<details> <summary>Instructions for Lazy</summary>
+
+> [!Note]
+> You are not required to call setup of lualine.
+> Calling this plugin's module in question should be enough.
+
+```lua
+{
+    "nvim-lualine/lualine.nvim",
+	-- lazy = false, -- Optional: might slow down the startup time in exchange for shorter lualine "blink"
+    dependencies = { "nvim-tree/nvim-web-devicons", "myypo/borrowed.nvim" },
+    config = function()
+        require("lualine.themes.borrowed-mayu")
+        -- require("lualine.themes.borrowed-shin")
+    end,
+}
+```
+
+> [!Warning]
+> Current implementation does not respect overrides to highlight colors.
+> So if you want to customize the lualine you will have to
+> **[copy it](./lua/lualine/themes)** to your config and override colors yourself.
+
+</details>
+
+---
+
 # Borrowed from (Acknowledgements)
 
 - [Rosé Pine theme](https://github.com/rose-pine/neovim): Mayu theme colors and dark interface colors
@@ -522,6 +557,8 @@ treesitter = { enable = true }
 - [Pinkmare theme](https://github.com/Matsuuu/pinkmare): inspiration and Mayu pink color
 
 - [Touhou Project by ZUN](https://en.wikipedia.org/wiki/Touhou_Project): colors for the Shin theme are based on [Shinmyoumaru](https://en.touhouwiki.net/wiki/Shinmyoumaru_Sukuna)
+
+- **Lualine integration**: is based on [evil lualine](https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua)
 
 - **Images used in the README**:
   [Yuuka with a parasol](https://www.pixiv.net/en/artworks/97429600) and [Shinmyoumaru on a roof](https://www.pixiv.net/en/artworks/94000244)
