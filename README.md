@@ -523,7 +523,6 @@ Integrations that have to go beyond setting highlights.
 
 <details> <summary>Instructions for Lazy</summary>
 
-> [!Note]
 > You are not required to call setup of lualine.
 > Calling this plugin's module in question should be enough.
 
@@ -539,7 +538,6 @@ Integrations that have to go beyond setting highlights.
 }
 ```
 
-> [!Warning]
 > Current implementation does not respect overrides to highlight colors.
 > So if you want to customize the lualine you will have to
 > **[copy it](./lua/lualine/themes)** to your config and override colors yourself.
