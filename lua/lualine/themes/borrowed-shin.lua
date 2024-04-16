@@ -116,7 +116,11 @@ ins_left({
     return require("oil").get_current_dir()
   end,
   cond = function()
-    local oil_loadead = require("lazy.core.config").plugins["oil.nvim"]._.loaded ~= nil
+    local plugin_oil = require("lazy.core.config").plugins["oil.nvim"]
+    if plugin_oil == nil then
+      return false
+    end
+    local oil_loadead = plugin_oil._.loaded ~= nil
     if oil_loadead then
       return require("oil").get_current_dir() ~= nil
     end
