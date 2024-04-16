@@ -1,0 +1,369 @@
+*borrowed.nvim.txt*       For Neovim >= 0.8.0       Last change: 2024 April 16
+
+==============================================================================
+Table of Contents                            *borrowed.nvim-table-of-contents*
+
+1. Installation                                   |borrowed.nvim-installation|
+2. Configuration                                 |borrowed.nvim-configuration|
+3. Overriding colors and highlights|borrowed.nvim-overriding-colors-and-highlights|
+4. Supported integrations               |borrowed.nvim-supported-integrations|
+
+==============================================================================
+1. Installation                                   *borrowed.nvim-installation*
+
+
+LAZY.NVIM ~
+
+>lua
+    {
+        "myypo/borrowed.nvim",
+        lazy = false,
+        priority = 1000,
+    
+        version = '^0', -- Optional: avoid upgrading to breaking versions
+    
+        config = function()
+            -- require("borrowed").setup({ ... }) -- Optional: only has to be called to change settings
+    
+            -- If you are changing the config, colorscheme command has to be called after setup()
+            vim.cmd("colorscheme mayu"), -- OR vim.cmd("colorscheme shin")
+        end,
+    }
+<
+
+
+==============================================================================
+2. Configuration                                 *borrowed.nvim-configuration*
+
+Default configuration:
+
+>lua
+    require("borrowed").setup({
+        compile_path = vim.fn.stdpath("cache") .. "/borrowed", -- Where to store compiled colorschemes
+        compile_file_suffix = "_compiled", -- Compiled colorscheme file suffix
+        transparent = false, -- Disable setting background
+        dim_inactive = false, -- Non focused panes set to alternative background
+    
+        styles = { -- Styles to be applied to different syntax groups
+            comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "NONE",
+            constants = "NONE",
+            functions = "NONE",
+            keywords = "NONE",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "NONE",
+            variables = "NONE",
+        },
+    
+        inverse = { -- Inverse highlight colors for different types
+            match_paren = false,
+            visual = false,
+            search = false,
+        },
+    
+        cursor = { -- WIP: Dynamic cursor settings
+            enable = true,
+            visual = {
+                enable = true,
+            },
+        },
+    
+        module_default = true, -- Default enable value for modules, all modules are enabled by default
+        modules = { -- List of various plugin integrations and additional options
+            -- ...
+        },
+    
+        overrides = {
+            strategy = "force", -- "force" | "merge" -- How to handle overrides of palettes and highlight groups
+        },
+    })
+<
+
+
+==============================================================================
+3. Overriding colors and highlights*borrowed.nvim-overriding-colors-and-highlights*
+
+Color palettes of individual or all themes can be overriden e.g. `yell` color,
+as well as theme specifications of bundled for ease of change highlights
+e.g. `syntax` and individual highlights, such as `Keyword`.
+
+>lua
+    require("borrowed").setup({
+        overrides = {
+            strategy = "force", -- "force" | "merge"
+        },
+    
+        palettes = {
+            all = {
+                yell     = "#ff0000",
+                whisper  = "#4c66e2",
+            },
+            mayu = {
+                whisper  = "#0000ff", -- Overrides to individual themes will take priority
+            },
+        },
+    
+        specs = {
+            all = {
+                syntax = {
+                    keyword = "speak", -- Using name of a color from palette
+                },
+                diag = {
+                    error = "yell",
+                },
+            },
+            shin = {
+                syntax = {
+                    number = "#0000ff",
+                },
+            },
+        },
+    
+        groups = {
+            all = {
+                IncSearch = { bg = "whisper" },
+                String = { link = "Keyword" }, -- Link option has to be used alone, it makes a highlight inherit properties from another highlight
+            },
+            mayu = {
+                Search = { bg = "whisper" },
+                Boolean = { style = "italic,underline", bg = "#ffffff" },
+            },
+            shin = {
+                HelloWorld = { fg = "yell" }, -- Adding a new arbitary highlight, for example, used by another plugin
+            },
+        },
+    })
+<
+
+
+  [!Note] By default `force` override strategy is used, meaning, that when
+  overrides to individual highlights are specified in `groups` the previous
+  values of the highlight will be removed. Changing the strategy to `merge` will
+  change the behaviour to merging the previous values with the provided ones.
+
+EXAMPLE “DEFAULT” OVERRIDES ~
+
+Mayu ~
+
+>lua
+    palettes = {
+        mayu = {
+            mattress = "#000000",
+            sheet    = "#121212",
+            blanket  = "#26233a",
+            muted    = "#6e6a86",
+            subtle   = "#908caa",
+    
+            plain    = "#f7c7b5", -- white
+            yell     = "#e7517b", -- red
+            speak    = "#f78273", -- orange
+            whisper  = "#e0879e", -- pink
+            shy      = "#a37e6f", -- brown
+            extra    = "#949ae7", -- blue
+        },
+    },
+    
+    specs = {
+        mayu = {
+            syntax = {
+                bracket     = "subtle",
+                builtin     = "extra",
+                comment     = "muted",
+                conditional = "yell",
+                const       = "extra",
+                dep         = "muted",
+                field       = "speak",
+                func        = "whisper",
+                ident       = "plain",
+                keyword     = "yell",
+                number      = "extra",
+                operator    = "subtle",
+                preproc     = "whisper",
+                regex       = "shy",
+                statement   = "yell",
+                string      = "shy",
+                type        = "speak",
+                variable    = "plain",
+            },
+    
+            diag = {
+                error = "yell",
+                warn  = "speak",
+                hint  = "extra",
+                info  = "shy",
+                ok    = "extra",
+            },
+    
+            diag_bg = {
+                error = "blanket",
+                warn  = "blanket",
+                hint  = "blanket",
+                info  = "blanket",
+                ok    = "blanket",
+            },
+    
+            diff = {
+                add      = "extra",
+                removed  = "yell",
+                changed  = "speak",
+                conflict = "yell",
+                ignored  = "muted",
+            },
+    
+            cursor = {
+                fg = "mattress",
+                bg = "#f5dcd8",
+            },
+    
+            visual = {
+                fg        = "mattress",
+                bg        = "speak",
+                cursor_fg = "mattress",
+                cursor_bg = "extra",
+            },
+        },
+    },
+<
+
+Shin ~
+
+>lua
+    palettes = {
+        shin = {
+            mattress = "#000000",
+            sheet    = "#121212",
+            blanket  = "#26233a",
+            muted    = "#6e6a86",
+            subtle   = "#908caa",
+    
+            plain    = "#f7c7b5", -- white
+            yell     = "#e7517b", -- red
+            speak    = "#f78273", -- orange
+            whisper  = "#e0879e", -- pink
+            shy      = "#a37e6f", -- brown
+            extra    = "#949ae7", -- blue
+        },
+    },
+    
+    specs = {
+        shin = {
+            syntax = {
+                bracket     = "subtle",
+                builtin     = "extra",
+                comment     = "muted",
+                conditional = "yell",
+                const       = "extra",
+                dep         = "muted",
+                field       = "speak",
+                func        = "whisper",
+                ident       = "plain",
+                keyword     = "yell",
+                number      = "extra",
+                operator    = "subtle",
+                preproc     = "whisper",
+                regex       = "shy",
+                statement   = "yell",
+                string      = "shy",
+                type        = "speak",
+                variable    = "plain",
+            },
+    
+            diag = {
+                error = "yell",
+                warn  = "speak",
+                hint  = "extra",
+                info  = "shy",
+                ok    = "extra",
+            },
+    
+            diag_bg = {
+                error = "blanket",
+                warn  = "blanket",
+                hint  = "blanket",
+                info  = "blanket",
+                ok    = "blanket",
+            },
+    
+            diff = {
+                add      = "extra",
+                removed  = "yell",
+                changed  = "speak",
+                conflict = "yell",
+                ignored  = "muted",
+            },
+    
+            cursor = {
+                fg = "mattress",
+                bg = "#f5dcd8",
+            },
+    
+            visual = {
+                fg        = "mattress",
+                bg        = "speak",
+                cursor_fg = "mattress",
+                cursor_bg = "extra",
+            },
+        },
+    },
+<
+
+
+==============================================================================
+4. Supported integrations               *borrowed.nvim-supported-integrations*
+
+The plugin provides highlights for certain plugins and optional (neo)vim
+features out of the box, they are enabled by default.
+
+Here is the list of such integrations:
+
+PluginSettingsnvim-cmp>lua
+    cmp = { enable = true }
+<
+
+nvim-dap-ui>lua
+    dap_ui = { enable = true }
+<
+
+nvim-diagnostics>lua
+    diagnostic = {
+       enable = true,
+       background_enable = true,
+    }
+<
+
+flash.nvim>lua
+    flash = { enable = true }
+<
+
+gitsigns.nvim>lua
+    gitsigns = { enable = true }
+<
+
+lazy.nvim>lua
+    lazy = { enable = true }
+<
+
+nvim-semantic-tokens>lua
+    semantic_tokens = { enable = true }
+<
+
+nvim-lspconfig>lua
+    native_lsp = {
+       enable = true,
+       background_enable = true,
+    }
+<
+
+telescope.nvim>lua
+    telescope = { enable = true }
+<
+
+nvim-treesitter>lua
+    treesitter = { enable = true }
+<
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
