@@ -6,7 +6,7 @@ Table of Contents                            *borrowed.nvim-table-of-contents*
 1. Installation                                   |borrowed.nvim-installation|
 2. Configuration                                 |borrowed.nvim-configuration|
 3. Overriding colors and highlights|borrowed.nvim-overriding-colors-and-highlights|
-4. Supported integrations               |borrowed.nvim-supported-integrations|
+4. Supported highlight integrations|borrowed.nvim-supported-highlight-integrations|
 
 ==============================================================================
 1. Installation                                   *borrowed.nvim-installation*
@@ -311,7 +311,7 @@ Shin ~
 
 
 ==============================================================================
-4. Supported integrations               *borrowed.nvim-supported-integrations*
+4. Supported highlight integrations*borrowed.nvim-supported-highlight-integrations*
 
 The plugin provides highlights for certain plugins and optional (neo)vim
 features out of the box, they are enabled by default.
