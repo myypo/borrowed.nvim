@@ -1,0 +1,1 @@
+require("borrowed").load("mayu")
