@@ -1,5 +1,5 @@
-local Config = require("borrowed.config")
 local Borrowed = require("borrowed")
+local Config = require("borrowed.config")
 local Spy = require("luassert.spy")
 
 ---@type MaybeConfig
