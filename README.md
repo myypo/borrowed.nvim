@@ -11,61 +11,61 @@
 
 <details>
   <summary style="font-size: 1.25rem;">Mayu</summary>
-  
+
   <hr>
   <figure>
     <h4 align="center">Go</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/afd8f5be-fa47-4c00-9bde-9277bfb69407"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">TypeScript</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/001184f1-125d-45db-945b-1326b21ba464"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">Rust</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/70370a49-1ab4-401b-ac45-1a917c25d01a"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">Nix, not a web server (skill issue)</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/34d81f1f-8c87-4452-87a5-670da53aaf5c"/>
   </figure>
-  
+
   <hr>
 </details>
 
 <details>
   <summary style="font-size: 1.25rem;">Shin</summary>
   <hr>
-  
+
   <figure>
     <h4 align="center">Go</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/fec97edf-e7e6-4f0c-b07a-68725406c616"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">TypeScript</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/76c2138a-2a90-4502-8ab4-60956a6ef8dc"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">Rust</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/4c2a24e3-7153-43d3-aa4c-4897dd33cf76"/>
   </figure>
-  
+
   <hr>
   <figure>
     <h4 align="center">Nix</h4>
     <img src="https://github.com/MyyPo/borrowed.nvim/assets/110892040/0da41fbc-0615-4669-90b8-f7fe474a044f"/>
   </figure>
-  
+
   <hr>
 </details>
 
@@ -87,7 +87,7 @@
         -- require("borrowed").setup({ ... }) -- Optional: only has to be called to change settings
 
         -- If you are changing the config, colorscheme command has to be called after setup()
-        vim.cmd("colorscheme mayu"), -- OR vim.cmd("colorscheme shin")
+        vim.cmd("colorscheme mayu") -- OR vim.cmd("colorscheme shin")
     end,
 }
 ```
