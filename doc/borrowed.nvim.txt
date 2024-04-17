@@ -26,7 +26,7 @@ LAZY.NVIM ~
             -- require("borrowed").setup({ ... }) -- Optional: only has to be called to change settings
     
             -- If you are changing the config, colorscheme command has to be called after setup()
-            vim.cmd("colorscheme mayu"), -- OR vim.cmd("colorscheme shin")
+            vim.cmd("colorscheme mayu") -- OR vim.cmd("colorscheme shin")
         end,
     }
 <
