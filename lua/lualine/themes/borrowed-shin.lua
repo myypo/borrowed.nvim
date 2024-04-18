@@ -135,7 +135,8 @@ ins_left({
   "filename",
   cond = conditions.buffer_not_empty,
   color = function()
-    if require("grapple").exists() == true then
+    local installed_grapple, grapple = pcall(require, "grapple")
+    if installed_grapple and grapple.exists() then
       return { fg = colors.red, gui = "bold,underline" }
     end
     return { fg = colors.red, gui = "bold" }
