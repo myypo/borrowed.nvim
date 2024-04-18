@@ -17,6 +17,7 @@ function M.get(pal, spec, mod)
     ["@variable"] = { fg = syn.variable, style = stl.variables }, -- various variable names
     ["@variable.builtin"] = { fg = syn.builtin, style = stl.variables }, -- built-in variable names (e.g. `this`)
     ["@variable.parameter"] = { fg = syn.variable, stl.variables }, -- parameters of a function
+    ["@variable.parameter.builtin"] = { link = "Operator" }, -- builtin params like ... operator in Nix
     ["@variable.member"] = { fg = syn.field }, -- object and struct fields
 
     ["@constant"] = { link = "Constant" }, -- constant identifiers
@@ -138,13 +139,14 @@ function M.get(pal, spec, mod)
 
     ["@error"] = { link = "DiagnosticUnnecessary" },
 
-    -- Language specific -------------------------------------------------------
-
-    -- json
+    --- JSON ---
     ["@label.json"] = { fg = syn.func }, -- For labels: label: in C and :label: in Lua.
 
-    -- yaml
+    --- YAML ---
     ["@variable.member.yaml"] = { fg = syn.func }, -- For fields.
+
+    --- Go ---
+    ["@variable.member.go"] = { link = "@variable" }, -- Distinguish field declaration of a struct with its type
   }
 
   -- Legacy highlights
