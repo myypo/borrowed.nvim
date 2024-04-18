@@ -67,7 +67,7 @@ ins_left({
   function()
     return "▊"
   end,
-  color = { fg = colors.red },
+  color = { fg = colors.pink },
   padding = { left = 0, right = 1 },
 })
 
@@ -77,19 +77,19 @@ ins_left({
   end,
   color = function()
     local mode_color = {
-      n = colors.red,
+      n = colors.pink,
       i = colors.fg,
       v = colors.orange,
       [""] = colors.orange,
       V = colors.orange,
       c = colors.blue,
       no = colors.blue,
-      s = colors.pink,
-      S = colors.pink,
+      s = colors.red,
+      S = colors.red,
       [""] = colors.orange,
       ic = colors.orange,
-      R = colors.pink,
-      Rv = colors.pink,
+      R = colors.red,
+      Rv = colors.red,
       cv = colors.blue,
       ce = colors.blue,
       r = colors.blue,
@@ -127,7 +127,7 @@ ins_left({
     return false
   end,
   color = function()
-    return { fg = colors.red, gui = "bold" }
+    return { fg = colors.pink, gui = "bold" }
   end,
 })
 
@@ -137,9 +137,9 @@ ins_left({
   color = function()
     local installed_grapple, grapple = pcall(require, "grapple")
     if installed_grapple and grapple.exists() then
-      return { fg = colors.red, gui = "bold,underline" }
+      return { fg = colors.pink, gui = "bold,underline" }
     end
-    return { fg = colors.red, gui = "bold" }
+    return { fg = colors.pink, gui = "bold" }
   end,
 })
 
@@ -216,7 +216,7 @@ ins_right({
   end,
 
   icon = "󰛓",
-  color = { fg = colors.red, gui = "bold" },
+  color = { fg = colors.pink, gui = "bold" },
 })
 
 ins_right({
@@ -234,14 +234,14 @@ ins_right({
     return branchName
   end,
   icon = "",
-  color = { fg = colors.red, gui = "bold" },
+  color = { fg = colors.pink, gui = "bold" },
 })
 
 ins_right({
   function()
     return "▊"
   end,
-  color = { fg = colors.red },
+  color = { fg = colors.pink },
   padding = { left = 1 },
 })
 
