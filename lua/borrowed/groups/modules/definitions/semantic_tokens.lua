@@ -30,6 +30,7 @@ function M.get(pal, spec, mod)
   res["@lsp.type.unresolvedReference"] = { link = "@error" }
   res["@lsp.type.variable"] = { link = "@variable" }
   res["@lsp.type.decorator"] = { link = "@macro" }
+  res["@lsp.type.punctuation"] = { link = "@operator" }
 
   res["@lsp.type.function"] = {} -- color functions depending on the context, sometimes they act as variables etc.
   res["@lsp.typemod.function"] = {}
@@ -63,8 +64,7 @@ function M.get(pal, spec, mod)
   res["@lsp.typemod.function.builtin.nix"] = { link = "@function" }
 
   --- Go ---
-  res["@variable.member.go"] = { link = "@variable" }
-  res["@lsp.type.variable.go"] = {}
+  res["@lsp.type.variable.go"] = {} -- Go semantic highlighting treats property access as a regular variable, so fall back to treesitter
 
   --- TS/JS ---
   res["@lsp.mod.readonly.typescript"] = {}
