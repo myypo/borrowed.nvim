@@ -90,6 +90,7 @@
 ---@field whisper? string
 ---@field shy? string
 ---@field extra? string
+---@field [string]? string
 
 -- ThemeSpec
 

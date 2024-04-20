@@ -193,7 +193,7 @@ describe("Groups", function()
       ---@type Group
       local stub_groups =
         { Comment = comment_group, SpecialComment = special_comment_group, Bold = bold_group }
-      local stub_editor = stub(require("borrowed.groups.syntax"), "get", stub_groups)
+      local stub_syntax = stub(require("borrowed.groups.syntax"), "get", stub_groups)
 
       local new_comment_bg = "#222222"
       local pass_comment = { bg = new_comment_bg }
@@ -209,7 +209,29 @@ describe("Groups", function()
       assert.same(exp_comment, groups.Comment)
       assert.same(exp_bold, groups.Bold)
 
-      stub_editor:revert()
+      stub_syntax:revert()
     end
   )
+
+  it("should be able to use custom user-defined palette colors", function()
+    local new_sun = "#111111"
+    local _, pal, spec = Themes:get("shin")
+    local pass_new_key = { bg = "new_sun" }
+
+    ---@type Group
+    local stub_groups = {
+      Keyword = { fg = "#000000", bg = pal.yell },
+    }
+    local stub_syntax = stub(require("borrowed.groups.syntax"), "get", stub_groups)
+
+    Themes:override_palettes({ shin = { new_sun = new_sun } })
+    Groups:override_groups({
+      mayu = { Keyword = pass_new_key },
+    }, "merge")
+    local groups = Groups:get("mayu", pal, spec)
+
+    assert.same(new_sun, groups.Keyword.bg)
+
+    stub_syntax:revert()
+  end)
 end)

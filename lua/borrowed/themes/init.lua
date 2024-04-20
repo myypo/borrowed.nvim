@@ -69,7 +69,7 @@ function M:get(theme)
   return meta, pal, spec
 end
 
----Override(s) theme palette(s)
+---Override(s) theme palette(s) or adds new colors
 ---Assumes the provided values to be valid hex colors
 ---Has to be called first before other override methods
 ---@param ovrs MaybeThemePalettesConfig

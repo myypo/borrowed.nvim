@@ -92,15 +92,16 @@
 ---Color palette of the colorscheme theme
 ---@class ThemePalette
 ---Monochrome palette for UI elements and non-important text like comments
----@field mattress string -- Primary background color
----@field sheet string    -- Very subtle large UI elements over the primary bg
----@field blanket string  -- Normal UI elements over the primary bg
----@field muted string    -- Text that is less often read, like unused variables
----@field subtle string   -- Subtle but well readable text
+---@field mattress string  -- Primary background color
+---@field sheet string     -- Very subtle large UI elements over the primary bg
+---@field blanket string   -- Normal UI elements over the primary bg
+---@field muted string     -- Text that is less often read, like unused variables
+---@field subtle string    -- Subtle but well readable text
 ---Colors used for syntax highlighting and UI elements that have to stand out
----@field plain string    -- Foreground color used for regular text
----@field yell string     -- The most intense foreground color
----@field speak string    -- Less intense foreground color
----@field whisper string  -- Even less intense foreground color
----@field shy string      -- The least intense foreground color
----@field extra string    -- Extra color that is not used for syntax highlighting
+---@field plain string     -- Foreground color used for regular text
+---@field yell string      -- The most intense foreground color
+---@field speak string     -- Less intense foreground color
+---@field whisper string   -- Even less intense foreground color
+---@field shy string       -- The least intense foreground color
+---@field extra string     -- Extra color that is not used for syntax highlighting
+---@field [string]? string -- Optional user-defined colors

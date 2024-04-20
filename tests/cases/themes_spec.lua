@@ -63,6 +63,22 @@ describe("Theme palette", function()
     assert.same(mayu_default_pal.extra, pal.extra)
     assert.same(mayu_default_meta, meta)
   end)
+
+  it("should be possible to add user-defined palette colors", function()
+    local new_yell = "#555555"
+    local new_sun = "#222222"
+    local new_breeze = "#111111"
+
+    Themes:override_palettes({
+      shin = { new_sun = new_sun, yell = new_yell },
+      all = { new_sun = "not_this", new_breeze = new_breeze },
+    })
+    local _, pal, _ = Themes:get("shin")
+
+    assert.same(new_yell, pal.yell)
+    assert.same(new_sun, pal.new_sun)
+    assert.same(new_breeze, pal.new_breeze)
+  end)
 end)
 
 describe("Theme specs", function()
@@ -143,5 +159,22 @@ describe("Theme specs", function()
     local _, _, spec = Themes:get("shin")
 
     assert.are_not_same(spec, old_spec)
+  end)
+
+  it("should be possible to use user-defined palette colors to define specs", function()
+    local new_solid = "#777777"
+
+    Themes:override_palettes({
+      mayu = { new_solid = new_solid },
+    })
+    Themes:override_specs({
+      mayu = { syntax = { statement = "new_solid" } },
+      all = { syntax = { statement = "not_this" }, cursor = { fg = "new_solid" } },
+    })
+    local _, pal, spec = Themes:get("mayu")
+
+    assert.same(new_solid, pal.new_solid)
+    assert.same(new_solid, spec.syntax.statement)
+    assert.same(new_solid, spec.cursor.fg)
   end)
 end)
