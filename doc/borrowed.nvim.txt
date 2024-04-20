@@ -1,4 +1,4 @@
-*borrowed.nvim.txt*       For Neovim >= 0.8.0       Last change: 2024 April 18
+*borrowed.nvim.txt*       For Neovim >= 0.8.0       Last change: 2024 April 20
 
 ==============================================================================
 Table of Contents                            *borrowed.nvim-table-of-contents*
@@ -7,6 +7,7 @@ Table of Contents                            *borrowed.nvim-table-of-contents*
 2. Configuration                                 |borrowed.nvim-configuration|
 3. Overriding colors and highlights|borrowed.nvim-overriding-colors-and-highlights|
 4. Supported highlight integrations|borrowed.nvim-supported-highlight-integrations|
+5. External integrations                 |borrowed.nvim-external-integrations|
 
 ==============================================================================
 1. Installation                                   *borrowed.nvim-installation*
@@ -72,11 +73,12 @@ Default configuration:
     
         module_default = true, -- Default enable value for modules, all modules are enabled by default
         modules = { -- List of various plugin integrations and additional options
-            -- ...
+            -- ... Optional user settings
         },
     
         overrides = {
             strategy = "force", -- "force" | "merge" -- How to handle overrides of palettes and highlight groups
+            -- ... Optional user settings
         },
     })
 <
@@ -93,45 +95,49 @@ e.g. `syntax` and individual highlights, such as `Keyword`.
     require("borrowed").setup({
         overrides = {
             strategy = "force", -- "force" | "merge"
-        },
     
-        palettes = {
-            all = {
-                yell     = "#ff0000",
-                whisper  = "#4c66e2",
-            },
-            mayu = {
-                whisper  = "#0000ff", -- Overrides to individual themes will take priority
-            },
-        },
+            palettes = {
+                all = {
+                    yell     = "#ff0000",
+                    whisper  = "#4c66e2",
     
-        specs = {
-            all = {
-                syntax = {
-                    keyword = "speak", -- Using name of a color from palette
+                    mynewcolor = "#7da284", -- Adding a new custom color to palette
                 },
-                diag = {
-                    error = "yell",
+                mayu = {
+                    whisper  = "#0000ff", -- Overrides to individual themes will take priority
                 },
             },
-            shin = {
-                syntax = {
-                    number = "#0000ff",
+    
+            specs = {
+                all = {
+                    syntax = {
+                        keyword = "speak", -- Using name of a color from palette
+    
+                        string = "mynewcolor", -- Make use of the custom color we defined earlier
+                    },
+                    diag = {
+                        error = "yell",
+                    },
+                },
+                shin = {
+                    syntax = {
+                        number = "#0000ff",
+                    },
                 },
             },
-        },
     
-        groups = {
-            all = {
-                IncSearch = { bg = "whisper" },
-                String = { link = "Keyword" }, -- Link option has to be used alone, it makes a highlight inherit properties from another highlight
-            },
-            mayu = {
-                Search = { bg = "whisper" },
-                Boolean = { style = "italic,underline", bg = "#ffffff" },
-            },
-            shin = {
-                HelloWorld = { fg = "yell" }, -- Adding a new arbitary highlight, for example, used by another plugin
+            groups = {
+                all = {
+                    IncSearch = { bg = "whisper" },
+                    String = { link = "Keyword" }, -- Link option has to be used alone, it makes a highlight inherit properties from another highlight
+                },
+                mayu = {
+                    Search = { bg = "whisper" },
+                    Boolean = { style = "italic,underline", bg = "#ffffff" },
+                },
+                shin = {
+                    HelloWorld = { fg = "mynewcolor" }, -- Adding a new arbitary highlight, for example, used by another plugin
+                },
             },
         },
     })
@@ -363,6 +369,38 @@ telescope.nvim>lua
 nvim-treesitter>lua
     treesitter = { enable = true }
 <
+
+
+==============================================================================
+5. External integrations                 *borrowed.nvim-external-integrations*
+
+Integrations that have to go beyond setting highlights.
+
+------------------------------------------------------------------------------
+**lualine.nvim**
+
+Instructions for Lazy ~
+
+
+  You are not required to call setup of lualine. Calling this plugin’s module
+  in question should be enough.
+>lua
+    {
+        "nvim-lualine/lualine.nvim",
+        -- lazy = false, -- Optional: might slow down the startup time in exchange for shorter lualine "blink"
+        dependencies = { "nvim-tree/nvim-web-devicons", "myypo/borrowed.nvim" },
+        config = function()
+            require("lualine.themes.borrowed-mayu")
+            -- require("lualine.themes.borrowed-shin")
+        end,
+    }
+<
+
+
+  Current implementation does not respect overrides to highlight colors. So if
+  you want to customize the lualine you will have to **copy it** to your config
+  and override colors yourself.
+------------------------------------------------------------------------------
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
