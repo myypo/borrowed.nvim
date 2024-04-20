@@ -131,11 +131,12 @@ require("borrowed").setup({
 
     module_default = true, -- Default enable value for modules, all modules are enabled by default
     modules = { -- List of various plugin integrations and additional options
-        -- ...
+        -- ... Optional user settings
     },
 
     overrides = {
         strategy = "force", -- "force" | "merge" -- How to handle overrides of palettes and highlight groups
+        -- ... Optional user settings
     },
 })
 ```
@@ -150,45 +151,49 @@ and individual highlights, such as `Keyword`.
 require("borrowed").setup({
     overrides = {
         strategy = "force", -- "force" | "merge"
-    },
 
-    palettes = {
-        all = {
-            yell     = "#ff0000",
-            whisper  = "#4c66e2",
-        },
-        mayu = {
-            whisper  = "#0000ff", -- Overrides to individual themes will take priority
-        },
-    },
+        palettes = {
+            all = {
+                yell     = "#ff0000",
+                whisper  = "#4c66e2",
 
-    specs = {
-        all = {
-            syntax = {
-                keyword = "speak", -- Using name of a color from palette
+                mynewcolor = "#7da284", -- Adding a new custom color to palette
             },
-            diag = {
-                error = "yell",
+            mayu = {
+                whisper  = "#0000ff", -- Overrides to individual themes will take priority
             },
         },
-        shin = {
-            syntax = {
-                number = "#0000ff",
+
+        specs = {
+            all = {
+                syntax = {
+                    keyword = "speak", -- Using name of a color from palette
+
+                    string = "mynewcolor", -- Make use of the custom color we defined earlier
+                },
+                diag = {
+                    error = "yell",
+                },
+            },
+            shin = {
+                syntax = {
+                    number = "#0000ff",
+                },
             },
         },
-    },
 
-    groups = {
-        all = {
-            IncSearch = { bg = "whisper" },
-            String = { link = "Keyword" }, -- Link option has to be used alone, it makes a highlight inherit properties from another highlight
-        },
-        mayu = {
-            Search = { bg = "whisper" },
-            Boolean = { style = "italic,underline", bg = "#ffffff" },
-        },
-        shin = {
-            HelloWorld = { fg = "yell" }, -- Adding a new arbitary highlight, for example, used by another plugin
+        groups = {
+            all = {
+                IncSearch = { bg = "whisper" },
+                String = { link = "Keyword" }, -- Link option has to be used alone, it makes a highlight inherit properties from another highlight
+            },
+            mayu = {
+                Search = { bg = "whisper" },
+                Boolean = { style = "italic,underline", bg = "#ffffff" },
+            },
+            shin = {
+                HelloWorld = { fg = "mynewcolor" }, -- Adding a new arbitary highlight, for example, used by another plugin
+            },
         },
     },
 })
@@ -511,8 +516,6 @@ treesitter = { enable = true }
 
 </table>
 
-<!-- panvimdoc-ignore-start -->
-
 # External integrations
 
 Integrations that have to go beyond setting highlights.
@@ -545,6 +548,8 @@ Integrations that have to go beyond setting highlights.
 </details>
 
 ---
+
+<!-- panvimdoc-ignore-start -->
 
 # Borrowed from (Acknowledgements)
 
