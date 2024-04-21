@@ -26,7 +26,11 @@ function M.setup()
   vim.cmd([[set runtimepath=$VIMRUNTIME]])
   vim.opt.runtimepath:append(M.root())
   vim.opt.packpath = { M.root(".tests/site") }
+
   M.load("nvim-lua/plenary.nvim")
+  M.load("nvim-lualine/lualine.nvim")
+  M.load("folke/lazy.nvim")
+
   vim.env.XDG_CONFIG_HOME = M.root(".tests/config")
   vim.env.XDG_DATA_HOME = M.root(".tests/data")
   vim.env.XDG_STATE_HOME = M.root(".tests/state")
