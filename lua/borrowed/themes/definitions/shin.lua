@@ -63,7 +63,7 @@ local spec = {
   diff = {
     add      = "extra",
     removed  = "yell",
-    changed  = "speak",
+    changed  = "plain",
     conflict = "yell",
     ignored  = "muted",
   },
