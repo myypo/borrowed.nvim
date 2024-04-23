@@ -1,3 +1,4 @@
+local change_brightness = require("borrowed.lib.colors").change_brightness
 local Config = require("borrowed.config")
 
 local M = {}
@@ -23,10 +24,10 @@ function M.get(pal, spec)
     CursorColumn     = { link = "CursorLine" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine       = { bg = pal.blanket }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory        = { fg = pal.whisper }, -- directory names (and other special names in listings)
-    DiffAdd          = { fg = spec.diff.add, bg = pal.sheet }, -- diff mode: Added line |diff.txt|
-    DiffChange       = { fg = spec.diff.changed, bg = pal.sheet }, -- diff mode: Changed line |diff.txt|
-    DiffDelete       = { fg = spec.diff.removed, bg = pal.sheet }, -- diff mode: Deleted line |diff.txt|
-    DiffText         = { fg = spec.diff.changed, bg = pal.sheet }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd          = { bg = change_brightness(spec.diff.add, -80) }, -- diff mode: Added line |diff.txt|
+    DiffChange       = { bg = change_brightness(spec.diff.changed, -80) }, -- diff mode: Changed line |diff.txt|
+    DiffDelete       = { bg = change_brightness(spec.diff.removed, -80) }, -- diff mode: Deleted line |diff.txt|
+    DiffText         = { bg = change_brightness(spec.diff.changed, -80) }, -- diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer      = { fg = pal.blanket }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     ErrorMsg         = { fg = spec.diag.error }, -- error messages on the command line
     WinSeparator     = { fg = pal.blanket }, -- the column separating vertically split windows
