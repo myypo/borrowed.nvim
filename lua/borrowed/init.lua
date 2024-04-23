@@ -65,7 +65,6 @@ function M.load(theme)
     compiled()
   else
     M.compile_plugin()
-    compiled = loadfile(compiled_filename)
   end
 
   lock = false
