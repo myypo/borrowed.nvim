@@ -5,6 +5,16 @@ local Spy = require("luassert.spy")
 ---@type MaybeConfig
 local user_conf = { compile_file_suffix = "_very_unique_compiled_suffix" }
 
+describe("Borrowed", function()
+  it("should not raise errors on bare load of mayu when setup not called", function()
+    Borrowed.load("mayu")
+  end)
+
+  it("should not raise errors on bare load of shin when setup not called", function()
+    Borrowed.load("shin")
+  end)
+end)
+
 describe("Borrowed init plugin compilation", function()
   local snapshot
   before_each(function()
