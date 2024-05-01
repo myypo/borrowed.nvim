@@ -29,7 +29,7 @@ function M.get(pal, spec, mod)
   res["@lsp.type.typeAlias"] = { link = "@type.definition" }
   res["@lsp.type.unresolvedReference"] = { link = "@error" }
   res["@lsp.type.variable"] = { link = "@variable" }
-  res["@lsp.type.decorator"] = { link = "@macro" }
+  res["@lsp.type.decorator"] = { link = "@function" }
   res["@lsp.type.punctuation"] = { link = "@operator" }
 
   res["@lsp.type.function"] = {} -- color functions depending on the context, sometimes they act as variables etc.
@@ -56,9 +56,7 @@ function M.get(pal, spec, mod)
 
   -- Trick to color exclamation mark differently than the rest of the macro call
   res["@lsp.type.macro.rust"] = { link = "@function.builtin" }
-  res["@lsp.typemod.macro.library.rust"] = { link = "@macro" }
-
-  res["@lsp.type.deriveHelper.rust"] = { link = "@macro" }
+  res["@lsp.typemod.macro.library.rust"] = { link = "@function" }
 
   --- Nix ---
   res["@lsp.typemod.function.builtin.nix"] = { link = "@function" }
