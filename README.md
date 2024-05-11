@@ -77,7 +77,7 @@
 
 ```lua
 {
-    "MyyPo/borrowed.nvim",
+    "myypo/borrowed.nvim",
     lazy = false,
     priority = 1000,
 
