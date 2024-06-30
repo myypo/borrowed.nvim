@@ -35,6 +35,8 @@ function M.get(pal, spec, mod)
   res["@lsp.type.function"] = {} -- color functions depending on the context, sometimes they act as variables etc.
   res["@lsp.typemod.function"] = {}
   res["@lsp.typemod.function.constant"] = { link = "@function" }
+  res["@lsp.typemod.method"] = {}
+  res["@lsp.typemod.method.constant"] = { link = "@function" }
 
   res["@lsp.mod.builtin"] = { link = "@constant.builtin" }
   res["@lsp.mod.constant"] = { link = "@constant" }
