@@ -400,6 +400,18 @@ cmp = { enable = true }
 </td>
 <!-- nvim-cmp -->
 
+<!-- compass.nvim -->
+<tr>
+<td> <a href="https://github.com/myypo/compass">compass.nvim</a> </td>
+<td>
+
+```lua
+compass = { enable = false }
+```
+
+</td>
+<!-- compass.nvim -->
+
 <!-- nvim-dap-ui -->
 <tr>
 <td> <a href="https://github.com/rcarriga/nvim-dap-ui">nvim-dap-ui</a> </td>

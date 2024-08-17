@@ -6,6 +6,7 @@ local M = {}
 ---@enum ModuleNames
 M.ModuleNames = {
   cmp = "cmp",
+  compass = "compass",
   dap_ui = "dap_ui",
   diagnostic = "diagnostic",
   flash = "flash",

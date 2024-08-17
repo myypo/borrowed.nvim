@@ -50,6 +50,7 @@ local defaults = {
   ---@field [ModuleNames] ModuleConfig
   modules = {
     cmp = { enable = true },
+    compass = { enable = false },
     dap_ui = { enable = true },
     diagnostic = {
       enable = true,
