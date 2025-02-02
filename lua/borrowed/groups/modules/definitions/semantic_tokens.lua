@@ -55,6 +55,7 @@ function M.get(pal, spec, mod)
 
   --- Rust ---
   res["@lsp.type.lifetime.rust"] = { link = "@operator" }
+  res["@lsp.type.string.rust"] = {}
 
   -- Trick to color exclamation mark differently than the rest of the macro call
   res["@lsp.type.macro.rust"] = { link = "@function.builtin" }
